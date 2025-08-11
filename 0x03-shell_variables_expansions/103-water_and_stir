@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Bases
+water="water"
+stir="stir"
+bestchol="bestchol"
+
+# Function: convert from custom base to decimal
+from_base() {
+    local value="$1"
+    local base_chars="$2"
+    local base_len=${#base_chars}
+    local result=0
+    local i char digit
+
+    for (( i=0; i<${#value}; i++ )); do
+        char="${value:$i:1}"
+        digit=$(expr index "$base_chars" "$char")
+        digit=$((digit - 1)) # expr index is 1-based
+        result=$((result * base_len + digit))
+    done
+
+    echo "$result"
+}
+
+# Function: convert from decimal to custom base
+to_base() {
+    local num=$1
+    local base_chars="$2"
+    local base_len=${#base_chars}
+    local result=""
+
+    while [ $num -gt 0 ]; do
+        local remainder=$((num % base_len))
+        result="${base_chars:$remainder:1}$result"
+        num=$((num / base_len))
+    done
+
+    echo "$result"
+}
+
+# Convert inputs to decimal
+water_dec=$(from_base "$WATER" "$water")
+stir_dec=$(from_base "$STIR" "$stir")
+
+# Add
+sum=$((water_dec + stir_dec))
+
+# Convert sum to bestchol
+to_base "$sum" "$bestchol"

@@ -1,0 +1,15 @@
+User's Browser
+      |
+      v
+ [ Internet ]
+      |
+      v
+  [ www.foobar.com ]
+      |
+      v
+  [ Server @ 8.8.8.8 ]
+   ├── Nginx (Web Server)
+   │       └── forwards requests to...
+   ├── Application Server (e.g., Gunicorn)
+   │       └── runs application files (codebase)
+   └── MySQL Database

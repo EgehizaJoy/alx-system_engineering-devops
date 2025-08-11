@@ -1,4 +1,4 @@
-[⚠️ Suspicious Content] 1. Application Server vs Web Server
+ 1. Application Server vs Web Server
 Web Server (e.g., Nginx, Apache)
 Purpose: Handles incoming HTTP/HTTPS requests.
 
